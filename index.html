@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Dia das Mulheres 💐</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background: radial-gradient(circle at top,#ff9acb,#ff4fa3,#2b0036);
+color:white;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* estrelas */
+
+.star{
+position:fixed;
+width:2px;
+height:2px;
+background:white;
+opacity:0.8;
+}
+
+/* tela inicial */
+
+.tela{
+text-align:center;
+padding:20px;
+animation:fade 2s;
+}
+
+@keyframes fade{
+from{opacity:0}
+to{opacity:1}
+}
+
+button{
+margin-top:20px;
+padding:14px 28px;
+border:none;
+border-radius:14px;
+background:#ff2f94;
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
+button:hover{
+transform:scale(1.05);
+background:#ff0f85;
+}
+
+/* carta */
+
+.carta{
+
+display:none;
+width:90%;
+max-width:500px;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+padding:30px;
+border-radius:20px;
+text-align:center;
+
+border:3px solid rgba(255,255,255,0.4);
+
+box-shadow:
+0 0 20px rgba(255,105,180,0.6),
+0 0 40px rgba(255,0,150,0.4);
+
+animation:openCard 1.3s;
+}
+
+@keyframes openCard{
+
+0%{
+transform:scale(0.5) rotateY(90deg);
+opacity:0;
+}
+
+100%{
+transform:scale(1) rotateY(0deg);
+opacity:1;
+}
+
+}
+
+h1{
+font-size:30px;
+color:#fff;
+margin-bottom:10px;
+}
+
+.frase{
+
+margin-top:20px;
+font-size:18px;
+min-height:80px;
+line-height:1.5;
+
+}
+
+/* assinatura */
+
+.assinatura{
+
+margin-top:25px;
+font-size:18px;
+color:#ffd3f1;
+
+}
+
+/* corações */
+
+.heart{
+position:fixed;
+top:-10px;
+font-size:18px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+/* ajuste mobile */
+
+@media (max-width:500px){
+
+h1{
+font-size:24px;
+}
+
+.frase{
+font-size:16px;
+}
+
+button{
+font-size:16px;
+padding:12px 24px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="tela" id="inicio">
+
+<h1>💐 Feliz Dia das Mulheres 💐</h1>
+
+<p>Tem uma pequena surpresa pra você, Thamirys ❤️</p>
+
+<button onclick="abrirCarta()">Abrir carta</button>
+
+</div>
+
+
+<div class="carta" id="carta">
+
+<h1>Para Thamirys 💌</h1>
+
+<p>Fiz esse cantinho da internet só pra você.</p>
+
+<div class="frase" id="frase"></div>
+
+<div class="assinatura">
+Com carinho, Luiz ❤️
+</div>
+
+</div>
+
+
+<script>
+
+/* frases */
+
+const frases=[
+
+"Thamirys, você é uma pessoa muito especial pra mim ❤️",
+
+"Mesmo sendo um web namoro, você conseguiu bagunçar meu coração.",
+
+"Você é tipo estrela no céu… ilumina tudo ✨",
+
+"Obrigado por sempre conversar comigo.",
+
+"Você é uma pessoa incrível.",
+
+"Seu sorriso consegue melhorar qualquer dia ruim.",
+
+"Você é muito importante pra mim.",
+
+"Às vezes eu fico pensando como fui ter a sorte de te conhecer.",
+
+"Entre bilhões de pessoas na internet eu fui encontrar logo você.",
+
+"Se beleza fosse crime você já tava com prisão perpétua 😌",
+
+"Você é uma das melhores partes do meu dia.",
+
+"Obrigado por aguentar minhas zoeiras 😂",
+
+"Você merece tudo de melhor.",
+
+"Que seu dia seja incrível.",
+
+"Que sua vida seja cheia de coisas boas.",
+
+"Você é forte, inteligente e especial.",
+
+"Você merece todo respeito e felicidade do mundo.",
+
+"Espero continuar fazendo parte da sua vida.",
+
+"Você faz meus dias ficarem melhores.",
+
+"Feliz Dia das Mulheres, Thamirys 💐❤️"
+
+]
+
+let i=0
+let j=0
+let atual=""
+
+function escrever(){
+
+if(i<frases.length){
+
+if(j<frases[i].length){
+
+atual+=frases[i].charAt(j)
+
+document.getElementById("frase").innerHTML=atual
+
+j++
+
+setTimeout(escrever,40)
+
+}
+
+else{
+
+setTimeout(()=>{
+
+i++
+j=0
+atual=""
+
+escrever()
+
+},2000)
+
+}
+
+}
+
+}
+
+function abrirCarta(){
+
+document.getElementById("inicio").style.display="none"
+
+document.getElementById("carta").style.display="block"
+
+escrever()
+
+}
+
+/* corações */
+
+function criarCoracao(){
+
+const heart=document.createElement("div")
+
+heart.classList.add("heart")
+
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.animationDuration=(Math.random()*3+3)+"s"
+
+heart.style.fontSize=(Math.random()*20+15)+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+
+heart.remove()
+
+},6000)
+
+}
+
+setInterval(criarCoracao,350)
+
+/* estrelas */
+
+for(let i=0;i<100;i++){
+
+let star=document.createElement("div")
+
+star.classList.add("star")
+
+star.style.left=Math.random()*100+"vw"
+
+star.style.top=Math.random()*100+"vh"
+
+document.body.appendChild(star)
+
+}
+
+</script>
+
+</body>
+</html>
